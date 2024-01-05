@@ -1,5 +1,5 @@
 class HolbertonCourse {
-  constructor (name, length, students) {
+  constructor(name, length, students) {
     if (typeof name !== 'string') {
       throw new Error('Name must be a string');
     }
@@ -15,22 +15,37 @@ class HolbertonCourse {
   }
 
   // Getter
-  get name () {
+  get name() {
     return this._name;
   }
+
   set name(newName) {
+    if (typeof newName !== 'string') {
+      throw new Error('Name must be a string');
+    }
+    this._name = newName;
   }
 
-  get length () {
+  get length() {
     return this._length;
   }
+
   set length(newLength) {
+    if (typeof newLength !== 'number') {
+      throw new Error('Name must be a string');
+    }
+    this._length = newLength;
   }
 
-  get students () {
+  get students() {
     return this._students;
   }
+
   set students(newStudents) {
+    if (!Array.isArray(newStudents)) {
+      throw new Error('students must be an array of strings');
+    }
+    this._students = newStudents;
   }
 }
 
