@@ -1,5 +1,8 @@
 class Building {
   constructor(sqft) {
+    if (new.target !== Building && this.evacuationWarningMessage === undefined) {
+      throw new Error('Class extending Building must override evacuationWarningMessage');
+    }
     this._sqft = sqft;
   }
 
@@ -11,13 +14,6 @@ class Building {
   set sqft(newSqft) {
     this._sqft = newSqft;
   }
-  evacuationWarningMessage() {
-    throw new Error('Class extending Building must override evacuationWarningMessage');
-  }
 }
-//  Object.defineProperty(Building, 'prototype', {
-//    value: Object.create(null),
-//    writable: false,
-//  });
 
 export default Building;
