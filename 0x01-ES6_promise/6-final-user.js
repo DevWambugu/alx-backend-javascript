@@ -6,12 +6,10 @@ function handleProfileSignup(firstName, lastName, fileName) {
   const user = signUpUser(firstName, lastName);
 
   return Promise.allSettled([photo, user]).then((values) => {
-    const profileResults = values.map((value) => {
-      if (value.status === 'fulfilled') {
-        return value.value;
-      }
-      return { error: value.reason.message };
-    });
+    const profileResults = values.map((value) => ({
+      status: value.status,
+      value: value.status === 'fulfilled' ? value.value : value.reason,
+    }));
 
     return profileResults;
   });
