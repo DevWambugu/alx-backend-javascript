@@ -1,6 +1,10 @@
-export default function(length, position, value) {
-    if (position < 0 || position >= length) {
-        throw new Error('Position outside range');
-      }
-    
+export default function (length, position, value) {
+  if (position < 0 || position >= length) {
+    throw new Error('Position outside range');
+  }
+  const buffer = new ArrayBuffer(length);
+  const view = new Int8Array(buffer);
+  view[position] = value;
+  const dataView = new DataView(buffer);
+  return dataView;
 }
