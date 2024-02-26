@@ -21,11 +21,15 @@ function countStudents(path) {
     // newFields
     result.shift();
     const newFields = [];
-    result.forEach((data) => newFields.push([data[0], data[3]]));
+    result.forEach((data) => {
+      newFields.push([data[0], data[3]]);
+    });
     // Count and aggregate the data
     // Create a new set
     const fields = new Set();
-    newFields.forEach((item) => fields.add(item[1]));
+    newFields.forEach((item) => {
+      fields.add(item[1]);
+    });
     const final = {};
     fields.forEach((data) => { (final[data] = 0); });
     newFields.forEach((data) => { (final[data[1]] += 1); });
