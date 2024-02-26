@@ -1,3 +1,5 @@
+// 3-read_file_async.js
+// import the file system module
 const fs = require('fs');
 // This code is similar to the sync one
 // except that it defines and async function
