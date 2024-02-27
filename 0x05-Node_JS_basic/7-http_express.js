@@ -10,9 +10,17 @@ app.get('/', (req, res) => {
 
 app.get('/students', (req, res) => {
   countStudents(process.argv[2].toString()).then((output) => {
-    res.send('This is the list of our students');
     const outString = output.slice(0, -1);
-    res.send(outString);
+    const studentsArray = outString.split(' ,').map((student) => {
+      const [firstName, lastName, age, field] = student.split(',');
+      return {
+        firstName, lastName, age, field,
+      };
+    });
+    const csStudents = studentsArray.filter((student) => student.field.trim() === 'CS').map((student) => student.firstName);
+    const sweStudents = studentsArray.filter((student) => student.field.trim() === 'SWE').map((student) => student.firstName);
+    const outputStrings = `This is the list of our students\nNumber of students: ${studentsArray.length}\nNumber of students in CS: ${csStudents.length}. List: ${csStudents.join(', ')}\nNumber of students in SWE: ${sweStudents.length}. List: ${sweStudents.join(', ')}`;
+    res.send(outputStrings);
   })
     .catch(() => {
       res.send('Cannot load the database');
