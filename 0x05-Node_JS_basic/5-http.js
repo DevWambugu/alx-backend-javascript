@@ -19,6 +19,10 @@ const app = http.createServer((req, res) => {
     countStudents(process.argv[2].toString()).then((output) => {
       const outString = output.slice(0, -1);
       res.end(outString);
+    }).catch(() => {
+      // res.statusCode = 404;
+      // write the response with the recommneded response.
+      res.end('Cannot load the database');
     });
   }
 });

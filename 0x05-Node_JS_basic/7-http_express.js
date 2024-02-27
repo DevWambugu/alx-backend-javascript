@@ -9,11 +9,13 @@ app.get('/', (req, res) => {
 });
 
 app.get('/students', (req, res) => {
-  res.send('This is the list of our students');
   countStudents(process.argv[2].toString()).then((output) => {
     const outString = output.slice(0, -1);
-    res.end(outString);
-  });
+    res.send(`This is the list of our students\n${outString}`);
+  })
+    .catch(() => {
+      res.send('Cannot load the database');
+    });
 });
 
 app.listen(port);
