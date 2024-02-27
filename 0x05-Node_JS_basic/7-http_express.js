@@ -10,8 +10,9 @@ app.get('/', (req, res) => {
 
 app.get('/students', (req, res) => {
   countStudents(process.argv[2].toString()).then((output) => {
+    res.send('This is the list of our students');
     const outString = output.slice(0, -1);
-    res.send(`This is the list of our students\n${outString}`);
+    res.send(outString);
   })
     .catch(() => {
       res.send('Cannot load the database');
