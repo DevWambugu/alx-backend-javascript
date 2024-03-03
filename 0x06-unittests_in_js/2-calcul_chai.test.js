@@ -1,6 +1,6 @@
 //Import the required files and module
 const { expect } = require('chai');
-const calculateNumber = require('./1-calcul');
+const calculateNumber = require('./2-calcul_chai');
 //This script uses describe to describe the test cases
 //It then uses assert.equal to test for the cases
 describe('#calculateNumber() with type SUM', () => {
